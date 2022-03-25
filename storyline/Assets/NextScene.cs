@@ -6,6 +6,6 @@ public class NextScene : MonoBehaviour
 {
     void OnEnable()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Play", LoadSceneMode.Single);
     }
 }
