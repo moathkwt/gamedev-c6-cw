@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public static EnemyController instance;
     public float playerRange = 5f;
     public float moveSpeed = 5f;
     public Camera cam;
@@ -37,6 +38,15 @@ public class EnemyController : MonoBehaviour
         }
         else
             rbEnemy.velocity = Vector2.zero;
+    }
+    void TakeDamage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        TakeDamage();
     }
 }
 

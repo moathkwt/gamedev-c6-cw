@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private float minAngle = 10f;
     private float maxAngle = 160f;
-    
+    public Animator gunAnim;
     
 
         
@@ -61,6 +61,28 @@ public class PlayerController : MonoBehaviour
 
             Vector3 rotAmountVert = mainCamera.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f);
             mainCamera.transform.localRotation = Quaternion.Euler(rotAmountVert.x, Mathf.Clamp(rotAmountVert.y, minAngle, maxAngle), rotAmountVert.z);
+        }
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            // يقوم بإخفاء السهم
+            if (Input.GetMouseButtonDown(0))
+            {
+                gunAnim.SetTrigger("shoot");//يقوم بتفعيل الأنميشن
+
+                Ray ray =
+             mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Enemy")
+                    {
+                        Destroy(gameObject);
+                    }
+                    
+                }
+            }
         }
 
 
