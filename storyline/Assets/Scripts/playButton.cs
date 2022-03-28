@@ -7,6 +7,6 @@ public class playButton : MonoBehaviour
 {
     public void PlayGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Lv1");
     }
 }

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
 
     public Rigidbody RB;
 
@@ -18,14 +20,23 @@ public class movement : MonoBehaviour
 
     private float minAngle = 10f;
     private float maxAngle = 160f;
+    
+    
 
-
+        
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -51,6 +62,8 @@ public class movement : MonoBehaviour
             Vector3 rotAmountVert = mainCamera.transform.localRotation.eulerAngles + new Vector3(0f, mouseInput.y, 0f);
             mainCamera.transform.localRotation = Quaternion.Euler(rotAmountVert.x, Mathf.Clamp(rotAmountVert.y, minAngle, maxAngle), rotAmountVert.z);
         }
+
+
 
         movement();
 
